@@ -30,7 +30,7 @@
         <ion-label>{{item.producto.nombre}}</ion-label> <ion-label>{{item.producto.precio}}</ion-label>
         <ion-label>{{item.cantidad}}</ion-label>
         <ion-button fill="clear" (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</ion-button>
-        <app-contador-cantidad [cantidadInicial]="item.cantidad" (cantidadCambiada)="cambiarCantidad"></app-contador-cantidad>
+        <app-contador-cantidad [cantidadInicial]="item.cantidad" (cantidadCambiada)="cambiarCantidad($event, item.producto.id)"></app-contador-cantidad>
       </ion-item>
     </ion-list>
     

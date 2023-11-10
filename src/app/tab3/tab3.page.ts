@@ -18,7 +18,7 @@ export class Tab3Page {
   }
 
   cambiarCantidad(cantidad:number, idProducto:number){
-
+    this.carritoService.modificarCantidadProducto(idProducto,cantidad);
   }
   
 
