@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 3
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 3</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-explore-container name="Tab 3 page"></app-explore-container>
+</ion-content>
+
+<ion-card *ngIf="carritoService.carrito.length">
+  <ion-card-header>
+    <ion-card-title>Su pedido</ion-card-title>
+    <ion-card-subtitle></ion-card-subtitle>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-list>
+      <ion-item class="pedido" *ngFor="let item of carritoService.carrito">
+        <ion-thumbnail slot="start">
+          <img alt="Silhouette of mountains" src="{{item.producto.imagen}}" />
+        </ion-thumbnail>
+        <ion-label>{{item.producto.nombre}}</ion-label> <ion-label>{{item.producto.precio}}</ion-label>
+        <ion-label>{{item.cantidad}}</ion-label>
+        <ion-button fill="clear" (click)="carritoService.eliminarProducto(item.producto.id)">Eliminar</ion-button>
+        <app-contador-cantidad [cantidadInicial]="item.cantidad" (cantidadCambiada)="cambiarCantidad"></app-contador-cantidad>
+      </ion-item>
+    </ion-list>
+    
+  </ion-card-content>
+
+</ion-card>
+
+
+<ion-content>
+  <p>total:${{carritoService.totalCarrito}}</p>
+  <ion-button fill="clear" ><a href="{{carritoService.generarMensaje()}}" target="_blank">comprar</a></ion-button>
+  
+  <ion-button fill="clear" (click)="carritoService.limpiarCarrito()">Limpiar</ion-button>
+</ion-content>
+
+
+
+<ion-content *ngIf="!carritoService.carrito.length">
+  <h1>Tu carrito esta vacio, <a [routerLink]="['/tabs/tab1']" >agregar un producto al carrito </a> </h1>
+
+</ion-content>
+
+
